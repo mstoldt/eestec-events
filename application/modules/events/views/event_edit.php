@@ -25,25 +25,25 @@ if(isset($_GET['id']))
 	$query = $this->db->get('persons');
 	$row = $query->row();
     
-	$event_name_id=>name;						
-	$event_lc_id=>lc;			
-	$event_start_date_id=>start_date;				
-	$event_end_date_id=>end_date;				
-	$event_description_id=>description; 				
-	$event_announce_date_id=>announce_date;				
-	$event_deadline_date_id=>deadline_date;				
-	$event_participants_announce_date_id=>participants_announce_date;
+	$event_name_id = $row->name;						
+	$event_lc_id = $row->lc;			
+	$event_start_date_id = $row->start_date;				
+	$event_end_date_id = $row->end_date;				
+	$event_description_id = $row->description; 				
+	$event_announce_date_id = $row->announce_date;				
+	$event_deadline_date_id = $row->deadline_date;				
+	$event_participants_announce_date_id = $row->participants_announce_date;
 	
 }else{
 	
-	$event_name_id=>"";						
-	$event_lc_id=>"";			
-	$event_start_date_id=>"";				
-	$event_end_date_id=>"";				
-	$event_description_id=>""; 				
-	$event_announce_date_id=>"";				
-	$event_deadline_date_id=>"";				
-	$event_participants_announce_date_id=>"";
+	$event_name_id= "";						
+	$event_lc_id= "";			
+	$event_start_date_id= "";				
+	$event_end_date_id= "";				
+	$event_description_id= ""; 				
+	$event_announce_date_id= "";				
+	$event_deadline_date_id= "";				
+	$event_participants_announce_date_id= "";
 }
 
 $this->load->helper(array('form', 'url'));
