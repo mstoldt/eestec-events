@@ -35,7 +35,7 @@ if(isset($_GET['id']))
 	$ev_participants_announce_date_id = $row->participants_announce_date;
 
 }else{
-
+	$id = "";
 	$ev_name_id= "";
 	$ev_lc_id= "";
 	$ev_start_date_id= "";
@@ -216,8 +216,34 @@ $data = array(
 );
 echo form_submit($data); ?>
 
+<select class="browser-default" id="person-list" data-event-id="<?php echo $id; ?>">
+    <?php
+        $query = $this->db->query("SELECT name, id FROM persons ORDER BY name ASC");
+        foreach($query->result() as $row)
+        {
+            echo '<option value="'.$row->id.'">'.$row->name.'</option>';
+        }
+    ?>
+</select>
+<input type="button" value="Add to event" id="add-person-to-event">
+<?php
+if(isset($_GET['id'])){
+?>
+<div class="all-the-attending-persons">
+<?php
+    // Persons attending to this event
+    $query = $this->db->query("SELECT p.name AS name, p.id AS id FROM event_participants ep INNER JOIN persons p ON ep.person_id = p.id WHERE event_id = ".$id);
+    foreach($query->result() as $row)
+    {
+        echo '<div class="chip" data-person-id="'.$row->id.'" data-event-id="'.$id.'">'.$row->name.'<i class="material-icons">close</i></div>';
+    }
+?>
+</div>
 
-<?php echo form_close();?>
+
+<?php
+}
+ echo form_close();?>
 
 
 <?php if(isset($event_name_id) && isset($event_lc_id) && isset($event_start_date_id) && isset($event_end_date_id)){
@@ -235,24 +261,4 @@ echo form_submit($data); ?>
 	$this->db->update('events', $data);
 } ?>
 
-<select class="browser-default" id="person-list" data-event-id="<?php echo $id; ?>">
-    <?php
-        $query = $this->db->query("SELECT name, id FROM persons ORDER BY name ASC");
-        foreach($query->result() as $row)
-        {
-            echo '<option value="'.$row->id.'">'.$row->name.'</option>';
-        }
-    ?>
-</select>
-<input type="button" value="Add to event" id="add-person-to-event">
 
-<div class="all-the-attending-persons">
-<?php
-    // Persons attending to this event
-    $query = $this->db->query("SELECT p.name AS name, p.id AS id FROM event_participants ep INNER JOIN persons p ON ep.person_id = p.id WHERE event_id = ".$id);
-    foreach($query->result() as $row)
-    {
-        echo '<div class="chip" data-person-id="'.$row->id.'" data-event-id="'.$id.'">'.$row->name.'<i class="material-icons">close</i></div>';
-    }
-?>
-</div>
