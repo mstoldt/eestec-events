@@ -221,4 +221,19 @@ echo form_submit($data); ?>
             }
         });
     });
+    <?php
+    $start_date = $row->start_date;
+    $end_date = $row->end_date;
+    $announce_date = $row->announce_date;
+    $participants_announce_date = $row->participants_announce_date;
+
+    $datediff1 = $end_date - $start_date;
+    $more_or_equal_seven = floor($datediff1/(60*60*24));
+
+    $datediff2 = $start_date - $participants_announce_date;
+    $more_or_equal_twentyeight = floor($datediff2/(60*60*24));
+
+    $datediff3 = $start_date - $announce_date;
+    $more_or_equal_fiftysix = floor($datediff3/(60*60*24));
+    ?>
 </script>
