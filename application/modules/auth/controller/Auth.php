@@ -4,6 +4,7 @@
         public function __construct() // upon construction of the object
     	{
 		    parent::__construct();
+            $this->load->helper('form');
     		//$this->load->model('Event_model'); //load the model
     	}
 
