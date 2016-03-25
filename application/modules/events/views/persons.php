@@ -56,7 +56,6 @@
             $('tr.searchme').each(function() {
                 var name = $(this).children('.searchname').html().toLowerCase();
                 var link = $(this).children('.searchlink').html().toLowerCase();
-                console.log($(this));
                 if(name.indexOf(search_string) == -1 && link.indexOf(search_string) == -1)
                 {
                     $(this).hide();
