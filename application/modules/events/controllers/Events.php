@@ -22,7 +22,14 @@
 
         public function index()
         {
-            redirect('events/event');
+            if($_SESSION['role'] == 'admin')
+            {
+                redirect('events/event');
+            }
+            else
+            {
+                redirect('events/persons');
+            }
         }
 
         public function persons($page = 'persons')
