@@ -54,7 +54,7 @@ echo form_submit($data); ?>
 <?php if(isset($person_name_id) && isset($profile_link_id) && isset($lc_id)){
 	$data = array(
 	'name' => $person_name_id,
-	'eestec_profile_link' => $profile_link_id,
+	'eestec_email' => $profile_link_id,
 	'lc' => $lc_id
 	);
 	$this->db->insert('persons', $data);

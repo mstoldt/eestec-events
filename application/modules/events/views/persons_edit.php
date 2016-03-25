@@ -8,7 +8,7 @@ if(isset($_GET['id']))
 	$row = $query->row();
     
 	$p_name = $row->name;
-	$prof_link = $row->eestec_profile_link;
+	$prof_link = $row->eestec_email;
 	$p_lc = $row->lc;
 	
 }else{
@@ -75,7 +75,7 @@ echo form_submit($data); ?>
 <?php if(isset($person_name_id) && isset($profile_link_id) && isset($lc_id)){
 	$data = array(
 	'name' => $person_name_id,
-	'eestec_profile_link' => $profile_link_id,
+	'eestec_email' => $profile_link_id,
 	'lc' => $lc_id
 	);
 	$this->db->where('id', $p_id);

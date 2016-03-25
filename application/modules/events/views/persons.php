@@ -3,7 +3,7 @@
     <thead>
         <tr>
             <th>Name</th>
-            <th>EESTEC Link</th>
+            <th>EESTEC Email</th>
             <th>LC</th>
             <th>Events attended (since 01/02 are red)</th>
             <th>Edit</th>
@@ -15,7 +15,7 @@
     foreach ($list->result() as $row)
     {
         $id = $row->id;
-        $eestec_profile_link = $row->eestec_profile_link;
+        $eestec_email = $row->eestec_email;
         $name = $row->person_name;
         $city = $row->city;
 
@@ -23,7 +23,7 @@
 
         echo "<td class='searchname'>".$name."</td>";
 
-        echo "<td class='searchlink'><a href='".$eestec_profile_link."' target='_blank'>".$eestec_profile_link."</a></td>";
+        echo "<td class='searchlink'><a href='".$eestec_email."' target='_blank'>".$eestec_email."</a></td>";
 
         echo "<td>".$city."</td>";
 
