@@ -8,7 +8,6 @@ if(isset($_GET['id']))
 	$row = $query->row();
     
 	$lc_city = $row->city;
-	
 }else{
 	$lc_city = "";
 }
@@ -27,6 +26,8 @@ echo form_label('City:', 'u_city');
 );
 echo form_input($data);
 
+echo form_hidden('id', $id);
+
 ?>
 
 
@@ -42,11 +43,11 @@ echo form_submit($data); ?>
 <?php echo form_close();?>
 
 
-<?php if(isset($lc_city)){
+<?php if(isset($city)){
 	$data = array(
-	'city' => $lc_city
+	'city' => $city
 	);
-	$this->db->where('city', $lc_city);
+	$this->db->where('id', $lc_id);
 	$this->db->update('lcs', $data);
 } ?>
 

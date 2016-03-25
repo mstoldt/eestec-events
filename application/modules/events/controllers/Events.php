@@ -119,7 +119,8 @@
 			'event_description_id' => $this->input->post('ev_description'),
 			'event_announce_date_id' => $this->input->post('ev_announce_date'),
 			'event_deadline_date_id' => $this->input->post('ev_deadline_date'),
-			'event_participants_announce_date_id' => $this->input->post('ev_participants_announce_date')
+			'event_participants_announce_date_id' => $this->input->post('ev_participants_announce_date'),
+			'ev_id' => $this->input->post('id')
 			);
 
 			// Show submitted data on view page again.
@@ -173,7 +174,8 @@
 			$data = array(
 			'person_name_id' => $this->input->post('per_name'),
 			'profile_link_id' => $this->input->post('prof_link'),
-			'lc_id' => $this->input->post('per_lc')
+			'lc_id' => $this->input->post('per_lc'),
+			'p_id' => $this->input->post('id')
 			);
 
 			// Show submitted data on view page again.
@@ -225,7 +227,8 @@
             $this->load->view('header', $data);
 
 			$data = array(
-			'city' => $this->input->post('u_city')
+			'city' => $this->input->post('u_city'),
+			'lc_id' => $this->input->post('id')
 			);
 			// Show submitted data on view page again.
 			$this->load->view("lcs_edit", $data);

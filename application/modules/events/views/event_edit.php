@@ -25,30 +25,30 @@ if(isset($_GET['id']))
 	$query = $this->db->get('events');
 	$row = $query->row();
     
-	$event_name_id = $row->name;						
-	$event_lc_id = $row->lc;			
-	$event_start_date_id = $row->start_date;				
-	$event_end_date_id = $row->end_date;				
-	$event_description_id = $row->description; 				
-	$event_announce_date_id = $row->announce_date;				
-	$event_deadline_date_id = $row->deadline_date;				
-	$event_participants_announce_date_id = $row->participants_announce_date;
+	$ev_name_id = $row->name;						
+	$ev_lc_id = $row->lc;			
+	$ev_start_date_id = $row->start_date;				
+	$ev_end_date_id = $row->end_date;				
+	$ev_description_id = $row->description; 				
+	$ev_announce_date_id = $row->announce_date;				
+	$ev_deadline_date_id = $row->deadline_date;				
+	$ev_participants_announce_date_id = $row->participants_announce_date;
 	
 }else{
 	
-	$event_name_id= "";						
-	$event_lc_id= "";			
-	$event_start_date_id= "";				
-	$event_end_date_id= "";				
-	$event_description_id= ""; 				
-	$event_announce_date_id= "";				
-	$event_deadline_date_id= "";				
-	$event_participants_announce_date_id= "";
+	$ev_name_id= "";						
+	$ev_lc_id= "";			
+	$ev_start_date_id= "";				
+	$ev_end_date_id= "";				
+	$ev_description_id= ""; 				
+	$ev_announce_date_id= "";				
+	$ev_deadline_date_id= "";				
+	$ev_participants_announce_date_id= "";
 }
 
 $this->load->helper(array('form', 'url'));
 // Open form and set URL for submit form
-echo form_open('events/data_submitted');
+echo form_open('events/data_edited');
 
 // Show name Field in View Page
 echo form_label('Event name:', 'ev_name');
@@ -57,7 +57,7 @@ $data= array(
 'name' => 'ev_name',
 'placeholder' => 'Please Enter the name of the event',
 'class' => 'input',
-'value' => $event_name_id
+'value' => $ev_name_id
 );
 echo form_input($data);
 
@@ -68,7 +68,7 @@ $data= array(
 'name' => 'ev_lc',
 'placeholder' => 'Please Enter lc name',
 'class' => 'input_box',
-'value' => $event_lc_id
+'value' => $ev_lc_id
 );
 echo form_input($data);
 
@@ -80,7 +80,7 @@ $data= array(
 'placeholder' => 'Please Enter the start date of the event',
 'class' => 'input',
 'id' => 'datepicker',
-'value' => $event_start_date_id
+'value' => $ev_start_date_id
 );
 echo form_input($data);
 
@@ -92,7 +92,7 @@ $data= array(
 'placeholder' => 'Please Enter the end date of the event',
 'class' => 'input',
 'id' => 'datepicker2',
-'value' => $event_end_date_id
+'value' => $ev_end_date_id
 );
 echo form_input($data);
 
@@ -103,7 +103,7 @@ $data= array(
 'name' => 'ev_description',
 'placeholder' => 'Please Enter the events description',
 'class' => 'input_box',
-'value' => $event_description_id
+'value' => $ev_description_id
 );
 echo form_input($data);
 
@@ -115,7 +115,7 @@ $data= array(
 'placeholder' => 'Please Enter the announce date of the event',
 'class' => 'input',
 'id' => 'datepicker3',
-'value' => $event_announce_date_id
+'value' => $ev_announce_date_id
 );
 echo form_input($data);
 
@@ -127,7 +127,7 @@ $data= array(
 'placeholder' => 'Please Enter deadline date Address',
 'class' => 'input',
 'id' => 'datepicker4',
-'value' => $event_deadline_date_id
+'value' => $ev_deadline_date_id
 );
 echo form_input($data);
 
@@ -139,9 +139,11 @@ $data= array(
 'placeholder' => 'Please Enter the participants announce date for the event',
 'class' => 'input',
 'id' => 'datepicker5',
-'value' => $event_participants_announce_date_id
+'value' => $ev_participants_announce_date_id
 );
 echo form_input($data);
+
+echo form_hidden('id', $id);
 
 ?>
 
@@ -167,9 +169,9 @@ echo form_submit($data); ?>
 	'description' => $event_description_id,
 	'announce_date' => $event_announce_date_id,
 	'deadline_date' => $event_deadline_date_id,
-	'participants_announce_date' => $event_participants_announce_date_id,
+	'participants_announce_date' => $event_participants_announce_date_id
 	);
-	$this->db->where('name', $event_name_id);
+	$this->db->where('id', $ev_id);
 	$this->db->update('events', $data);
 } ?>
 

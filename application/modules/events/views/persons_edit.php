@@ -15,6 +15,7 @@ if(isset($_GET['id']))
 	$p_name = "";
 	$prof_link = "";
 	$p_lc = "";
+	$id="";
 }
 $this->load->helper(array('form', 'url'));
 // Open form and set URL for submit form
@@ -53,6 +54,9 @@ $data= array(
 );
 echo form_input($data);
 
+
+echo form_hidden('id', $id);
+
 ?>
 
 
@@ -74,7 +78,7 @@ echo form_submit($data); ?>
 	'eestec_profile_link' => $profile_link_id,
 	'lc' => $lc_id
 	);
-	$this->db->where('eestec_profile_link', $profile_link_id);
+	$this->db->where('id', $p_id);
 	$this->db->update('persons', $data);
 } ?>
 
