@@ -20,9 +20,17 @@
     <div class="nav-wrapper">
       <a href="#" class="brand-logo"><?php echo $page_title; ?></a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
+          <?php
+            if($_SESSION['role'] == 'admin')
+            {
+          ?>
         <li><a href="<?php echo base_url("index.php/events/event"); ?>">Events</a></li>
-        <li><a href="<?php echo base_url("index.php/events/persons"); ?>">Persons</a></li>
         <li><a href="<?php echo base_url("index.php/events/lcs"); ?>">LCs</a></li>
+        <?php
+            }
+        ?>
+        <li><a href="<?php echo base_url("index.php/events/persons"); ?>">Persons</a></li>
+        <li><a href="<?php echo base_url("index.php/events/logout"); ?>">Logout</a></li>
       </ul>
     </div>
 	</nav>

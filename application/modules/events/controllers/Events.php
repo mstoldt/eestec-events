@@ -6,10 +6,17 @@
 		    parent::__construct();
     		$this->load->model('Event_model'); //load the model
 
-            /*if (!$this->ion_auth->logged_in())
+            if (isset($_SESSION['logged_in']))
     		{
-    			redirect('auth/login');
-    		}*/
+                if(!$_SESSION['logged_in'])
+                {
+                    redirect('login');
+                }
+    		}
+            else
+            {
+                redirect('login');
+            }
     	}
 
         public function index()
@@ -62,5 +69,12 @@
 			// Show submitted data on view page again.
 			$this->load->view("event_form", $data);
 		}
+
+        public function logout($page = 'logout')
+        {
+            session_start();
+        	session_destroy();
+            redirect('login');
+        }
     }
 ?>

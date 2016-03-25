@@ -176,7 +176,7 @@
         <div class="field">
         <?php
             // Open form and set URL for submit form
-            echo form_open('data_submitted');
+            echo form_open('login/data_submitted');
 
             // Show Email Field in View Page
             $data= array(
