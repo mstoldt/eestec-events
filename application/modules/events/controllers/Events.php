@@ -75,7 +75,7 @@
 
 		// Show form in view page i.e view_page.php
 		public function event_edit($page = 'event_edit') {
-			$data['page_title'] = "event edit";
+			$data['page_title'] = "Edit event";
 
             $this->load->view('header', $data);
 			$this->load->view("event_edit");
@@ -140,7 +140,7 @@
 
 		// Show form in view page i.e view_page.php
 		public function persons_edit($page = 'persons_edit') {
-			$data['page_title'] = "persons form";
+			$data['page_title'] = "Edit persons";
 
             $this->load->view('header', $data);
 			$this->load->view("persons_edit");
@@ -212,7 +212,7 @@
 
 		// Show form in view page i.e view_page.php
 		public function lcs_edit() {
-            $data['page_title'] = "LCs edit";
+            $data['page_title'] = "Edit LCs";
 
             $this->load->view('header', $data);
             $this->load->view('lcs_edit');

@@ -49,5 +49,7 @@ echo form_submit($data); ?>
 	);
 	$this->db->where('id', $lc_id);
 	$this->db->update('lcs', $data);
+	
+	redirect("events/lcs");
 } ?>
 

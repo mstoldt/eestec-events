@@ -80,5 +80,7 @@ echo form_submit($data); ?>
 	);
 	$this->db->where('id', $p_id);
 	$this->db->update('persons', $data);
+	
+	redirect("events/persons");
 } ?>
 

@@ -237,6 +237,7 @@ if(isset($_GET['id'])){
 	);
 	$this->db->where('id', $ev_id);
 	$this->db->update('events', $data);
+	redirect("events");
 } ?>
 <script>
   $('.chip i').on('click', function(e) {
