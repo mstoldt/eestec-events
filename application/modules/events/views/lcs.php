@@ -1,9 +1,4 @@
-<?php
-  if(!$_SESSION['role'] == 'admin')
-  {
-      redirect('events');
-  }
-?>
+
 <table border="1">
 <?php
     $tmp = "";
@@ -21,7 +16,6 @@
         {
             echo "</td></tr><tr><td>";
             echo $city;
-            echo "Changes made";
             echo "</td><td>".$e_name;
             $tmp = $row->id;
         }

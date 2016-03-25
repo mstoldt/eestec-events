@@ -19,6 +19,7 @@
             }
     	}
 
+
         public function index()
         {
             redirect('events/event');
@@ -39,9 +40,11 @@
             $data['list'] = $this->Event_model->all_events_participants();
             $data['page_title'] = "Events";
 
+
             $this->load->view('header', $data);
             $this->load->view('events', $data);
             $this->load->view('footer');
+
         }
 
         public function lcs($page = 'lcs')
@@ -68,7 +71,7 @@
 			$data['page_title'] = "event form";
 
             $this->load->view('header', $data);
-			
+
 			$data = array(
 			'event_name_id' => $this->input->post('ev_name'),
 			'event_lc_id' => $this->input->post('ev_lc'),
@@ -82,10 +85,10 @@
 
 			// Show submitted data on view page again.
 			$this->load->view("event_form", $data);
-			
+
             $this->load->view('footer');
 		}
-		
+
 		// Show form in view page i.e view_page.php
 		public function persons_form($page = 'persons_form') {
 			$data['page_title'] = "persons form";
@@ -100,7 +103,7 @@
 			$data['page_title'] = "persons form";
 
             $this->load->view('header', $data);
-			
+
 			$data = array(
 			'person_name_id' => $this->input->post('per_name'),
 			'profile_link_id' => $this->input->post('prof_link'),
@@ -109,7 +112,7 @@
 
 			// Show submitted data on view page again.
 			$this->load->view("persons_form", $data);
-			
+
             $this->load->view('footer');
 		}
 

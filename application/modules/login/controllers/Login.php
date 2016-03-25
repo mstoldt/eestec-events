@@ -68,6 +68,8 @@
         {
             $_SESSION['logged_in'] = true;
             $_SESSION['role'] = $role;
+            print_r($_SESSION);
+            
         }
     }
 ?>
