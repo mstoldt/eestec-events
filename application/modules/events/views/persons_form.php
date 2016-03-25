@@ -3,6 +3,12 @@ $this->load->helper(array('form', 'url'));
 // Open form and set URL for submit form
 echo form_open('events/persons_data_submitted');
 
+$query = $this->db->query("SELECT city, id FROM lcs");
+foreach($query->result() as $row)
+{
+	echo "<option value='".$row->id."'>".$row->name."</option>";
+}
+
 // Show name Field in View Page
 echo form_label('Name:', 'per_name');
 $data= array(
