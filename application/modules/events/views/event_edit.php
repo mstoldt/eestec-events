@@ -51,13 +51,13 @@ if(isset($_GET['id']))
 <script>
     <?php
 
-    $datediff1 = $ev_end_date - $ev_start_date;
+    $datediff1 = strtotime($ev_end_date_id) - strtotime($ev_start_date_id);
     $more_or_equal_seven = floor($datediff1/(60*60*24));
 
-    $datediff2 = $ev_start_date - $ev_participants_announce_date;
+    $datediff2 = strtotime($ev_start_date_id) - strtotime($ev_participants_announce_date_id);
     $more_or_equal_twentyeight = floor($datediff2/(60*60*24));
 
-    $datediff3 = $ev_start_date - $ev_announce_date;
+    $datediff3 = strtotime($ev_start_date_id) - strtotime($ev_announce_date_id);
     $more_or_equal_fiftysix = floor($datediff3/(60*60*24));
     ?>
 </script>
@@ -108,16 +108,16 @@ echo form_input($data);
 
 // Show end date Field in View Page
 if($more_or_equal_seven < 7){
-		$classname = 'red input';
+		$classname2 = 'red input';
 	}else{
-		$classname = 'input';
+		$classname2 = 'input';
 	}
 echo form_label('Event end date:', 'ev_end_date');
 $data= array(
 'type' => 'text',
 'name' => 'ev_end_date',
 'placeholder' => 'Please Enter the end date of the event',
-'class' => $classname,
+'class' => $classname2,
 'id' => 'datepicker2',
 'value' => $ev_end_date_id
 );
