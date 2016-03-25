@@ -8,29 +8,40 @@
     <thead>
         <tr>
             <th>Event</th>
+            <th>LC</th>
             <th>Attending people</th>
+            <th>Edit</th>
         </tr>
     </thead>
     <tbody>
 <?php
-    $tmp = "";
+
     foreach ($list->result() as $row)
     {
         $id = $row->id;
-        $p_name = $row->person_name;
         $e_name = $row->event_name;
 
-        if($row->id == $tmp)
+        echo "<tr>";
+        echo "<td>".$e_name."</td>";
+
+        echo "<td>".$row->lc_city."</td>";
+
+        echo "<td>";
+
+        $id = intval($id);
+        $query = $this->db->query('SELECT p.name AS name FROM event_participants ep INNER JOIN persons p ON ep.person_id = p.id WHERE event_id = '.$id);
+
+        foreach ($query->result() as $event)
         {
-            echo "<br>".$p_name;
+            echo $event->name.", ";
         }
-        else
-        {
-            echo "</td></tr><tr><td>";
-            echo $e_name;
-            echo "</td><td>".$p_name;
-            $tmp = $id;
-        }
+
+        echo "</td>";
+
+        echo "<td><a href='event_edit?id=".$id."'><i class='material-icons'>mode edit</i></a></td>";
+
+        echo "</tr>";
+
 
     }
  ?>

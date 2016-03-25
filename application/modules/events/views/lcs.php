@@ -10,31 +10,42 @@
         <tr>
             <th>City</th>
             <th>Events in the last 4 years</th>
+            <th>Edit</th>
         </tr>
     </thead>
     <tbody>
 <?php
-    $tmp = "";
     foreach ($list->result() as $row)
     {
         $id = $row->id;
         $city = $row->city;
-        $e_name = $row->event_name;
 
-        if($row->id == $tmp)
+        echo "<tr class='searchme'>";
+
+        echo "<td class='searchme'>";
+        echo $city;
+        echo "</td>";
+
+        // Events
+        echo "<td>";
+
+        $id = intval($id);
+        $query = $this->db->query('SELECT e.name AS event_name, e.start_date FROM events e WHERE lc = '.$id.' ORDER BY start_date DESC');
+
+        foreach ($query->result() as $event)
         {
-            echo "<br>".$e_name." (".$row->event_startdate." - ".$row->event_enddate.")";
+            echo $event->event_name.", ";
         }
-        else
-        {
-            echo "</td></tr><tr class='searchme'><td class='searchme'>";
-            echo $city;
-            echo "</td><td>".$e_name." (".$row->event_startdate." - ".$row->event_enddate.")";
-            $tmp = $row->id;
-        }
+
+        echo "</td>";
+
+        echo "<td><a href='lcs_edit?id=".$row->id."'><i class='material-icons'>mode edit</i></a></td>";
+
+        echo "</tr>";
 
     }
- ?></tbody>
+ ?>
+</tbody>
 </table>
  <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
   <a class="btn-floating btn-large waves-effect waves-light red" href="lcs_form"><i class="material-icons">add</i></a>
