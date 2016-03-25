@@ -1,3 +1,21 @@
+<head>
+  <meta charset="utf-8">
+  <title>jQuery UI Datepicker - Default functionality</title>
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+  <link rel="stylesheet" href="/resources/demos/style.css">
+  <script>
+  $(function() {
+    $( "#datepicker" ).datepicker();
+    $( "#datepicker2" ).datepicker();
+    $( "#datepicker3" ).datepicker();
+    $( "#datepicker4" ).datepicker();
+    $( "#datepicker5" ).datepicker();
+  });
+  </script>
+</head>
+
 <?php
 
 $this->load->helper(array('form', 'url'));
@@ -25,22 +43,13 @@ $data= array(
 echo form_input($data);
 
 // Show start date Field in View Page
-?>
-<script>
- $('.datepicker').pickadate({
-    selectMonths: true, // Creates a dropdown to control month
-    selectYears: 15 // Creates a dropdown of 15 years to control year
-  });
-</script>
-<input type="date" class="datepicker">
-
-<?php
 echo form_label('Event start date:', 'ev_start_date');
 $data= array(
-'type' => 'date',
+'type' => 'text',
 'name' => 'ev_start_date',
 'placeholder' => 'Please Enter the start date of the event',
-'class' => 'datepicker'
+'class' => 'input',
+'id' => 'datepicker'
 );
 echo form_input($data);
 
@@ -50,7 +59,8 @@ $data= array(
 'type' => 'text',
 'name' => 'ev_end_date',
 'placeholder' => 'Please Enter the end date of the event',
-'class' => 'input_box'
+'class' => 'input',
+'id' => 'datepicker2'
 );
 echo form_input($data);
 
@@ -70,7 +80,8 @@ $data= array(
 'type' => 'text',
 'name' => 'ev_announce_date',
 'placeholder' => 'Please Enter the announce date of the event',
-'class' => 'input_box'
+'class' => 'input',
+'id' => 'datepicker3'
 );
 echo form_input($data);
 
@@ -80,7 +91,8 @@ $data= array(
 'type' => 'text',
 'name' => 'ev_deadline_date',
 'placeholder' => 'Please Enter deadline date Address',
-'class' => 'input_box'
+'class' => 'input',
+'id' => 'datepicker4'
 );
 echo form_input($data);
 
@@ -90,7 +102,8 @@ $data= array(
 'type' => 'text',
 'name' => 'ev_participants_announce_date',
 'placeholder' => 'Please Enter the participants announce date for the event',
-'class' => 'input_box'
+'class' => 'input',
+'id' => 'datepicker5'
 );
 echo form_input($data);
 

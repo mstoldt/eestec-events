@@ -1,6 +1,7 @@
 <table border="1" class="striped">
     <thead>
         <tr>
+            <th>Choice</th>
             <th>Name</th>
             <th>EESTEC Link</th>
             <th>LC</th>
@@ -9,6 +10,11 @@
     </thead>
     <tbody>
 <?php
+	$this->load->helper(array('form', 'url'));
+	// Open form and set URL for submit form
+	echo form_open('events/persons_data_submitted');
+
+
     $tmp = "";
     foreach ($list->result() as $row)
     {
@@ -22,7 +28,12 @@
         }
         else
         {
+			
             echo "</td></tr><tr><td>";
+			
+			echo form_checkbox('choice', 'accept', TRUE);
+			
+            echo "</td><td>";
             echo $p_name;
             echo "</td><td><a href='".$eestec_profile_link."' target='_blank'>".$eestec_profile_link."</a>";
             echo "</td><td>".$row->city;
@@ -42,3 +53,14 @@
 	</div>
 </tbody>
 </table>
+<?php
+	
+	$data = array(
+	'type' => 'submit',
+	'value'=> 'Submit',
+	'class'=> 'submit'
+	);
+	echo form_submit($data); 
+	echo form_close();
+
+?>
