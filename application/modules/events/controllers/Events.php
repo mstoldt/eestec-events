@@ -46,7 +46,7 @@
             $this->load->view('lcs', $data);
             $this->load->view('footer');
         }
-		
+
 		// Show form in view page i.e view_page.php
 		public function event_form() {
 			$this->load->view("event_form");
@@ -61,7 +61,6 @@
 
 			// Show submitted data on view page again.
 			$this->load->view("event_form", $data);
-			}
 		}
     }
 ?>
