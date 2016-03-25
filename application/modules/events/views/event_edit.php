@@ -49,29 +49,6 @@ if(isset($_GET['id']))
 
 
 <script>
-    $('.chip i').on('click', function(e) {
-        var p_id = $(this).parents('div.chip').attr('data-person-id');
-        var e_id = $(this).parents('div.chip').attr('data-event-id');
-
-        $.post("events/delete_person_from_event", {p_id: p_id, e_id: e_id}, function(data)
-        {
-
-        });
-    });
-
-    $('#add-person-to-event').on('click', function(e) {
-        var p_id = $('select#person-list').find(":selected").val();
-        var p_name = $('select#person-list').find(":selected").text();
-        var e_id = $('select#person-list').attr('data-event-id');
-
-        $.post("events/add_person_to_event", {p_id: p_id, e_id: e_id}, function(data)
-        {
-            if(data)
-            {
-                $('.all-the-attending-persons').append('<div class="chip" data-person-id="'+p_id+'" data-event-id="'+e_id+'">'+p_name+'<i class="material-icons">close</i></div>');
-            }
-        });
-    });
     <?php
 
     $datediff1 = $ev_end_date - $ev_start_date;
@@ -260,5 +237,29 @@ if(isset($_GET['id'])){
 	$this->db->where('id', $ev_id);
 	$this->db->update('events', $data);
 } ?>
+<script>
+  $('.chip i').on('click', function(e) {
+        var p_id = $(this).parents('div.chip').attr('data-person-id');
+        var e_id = $(this).parents('div.chip').attr('data-event-id');
 
+        $.post("events/delete_person_from_event", {p_id: p_id, e_id: e_id}, function(data)
+        {
+
+        });
+    });
+
+    $('#add-person-to-event').on('click', function(e) {
+        var p_id = $('select#person-list').find(":selected").val();
+        var p_name = $('select#person-list').find(":selected").text();
+        var e_id = $('select#person-list').attr('data-event-id');
+
+        $.post("events/add_person_to_event", {p_id: p_id, e_id: e_id}, function(data)
+        {
+            if(data)
+            {
+                $('.all-the-attending-persons').append('<div class="chip" data-person-id="'+p_id+'" data-event-id="'+e_id+'">'+p_name+'<i class="material-icons">close</i></div>');
+            }
+        });
+    });
+</script>
 
