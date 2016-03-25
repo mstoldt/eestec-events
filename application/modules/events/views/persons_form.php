@@ -1,8 +1,4 @@
 <?php
-if(isset($_GET['id']))
-{
-	// Give me all the data at the moment and put it in the form
-}
 $this->load->helper(array('form', 'url'));
 // Open form and set URL for submit form
 echo form_open('events/persons_data_submitted');

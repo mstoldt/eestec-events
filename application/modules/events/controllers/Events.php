@@ -104,6 +104,15 @@
 			$this->load->view("persons_form");
             $this->load->view('footer');
 		}
+		
+		// Show form in view page i.e view_page.php
+		public function persons_edit($page = 'persons_edit') {
+			$data['page_title'] = "persons form";
+
+            $this->load->view('header', $data);
+			$this->load->view("persons_edit");
+            $this->load->view('footer');
+		}
 
 		// When user submit data on view page, Then this function store data in array.
 		public function persons_data_submitted($page = 'data_submitted') {
@@ -119,6 +128,24 @@
 
 			// Show submitted data on view page again.
 			$this->load->view("persons_form", $data);
+
+            $this->load->view('footer');
+		}
+		
+		// When user submit data on view page, Then this function store data in array.
+		public function persons_data_edited($page = 'data_edited') {
+			$data['page_title'] = "persons form";
+
+            $this->load->view('header', $data);
+
+			$data = array(
+			'person_name_id' => $this->input->post('per_name'),
+			'profile_link_id' => $this->input->post('prof_link'),
+			'lc_id' => $this->input->post('per_lc')
+			);
+
+			// Show submitted data on view page again.
+			$this->load->view("persons_edit", $data);
 
             $this->load->view('footer');
 		}
