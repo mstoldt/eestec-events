@@ -5,6 +5,14 @@
     	{
 		    parent::__construct();
             $this->load->helper('form');
+
+            if (isset($_SESSION['logged_in']))
+    		{
+                if($_SESSION['logged_in'])
+                {
+                    redirect('events');
+                }
+            }
     	}
 
         public function index()
@@ -69,7 +77,7 @@
             $_SESSION['logged_in'] = true;
             $_SESSION['role'] = $role;
             print_r($_SESSION);
-            
+
         }
     }
 ?>

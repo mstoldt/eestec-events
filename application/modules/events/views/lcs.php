@@ -1,4 +1,9 @@
-
+<?php
+    if($_SESSION['role'] != 'admin')
+    {
+        redirect('events');
+    }
+?>
 <table border="1">
 <?php
     $tmp = "";
