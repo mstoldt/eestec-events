@@ -41,5 +41,22 @@
             $this->load->view('lcs', $data);
             $this->load->view('footer');
         }
+		
+		// Show form in view page i.e view_page.php
+		public function event_form() {
+			$this->load->view("event_form");
+		}
+
+		// When user submit data on view page, Then this function store data in array.
+		public function data_submitted() {
+			$data = array(
+			'user_email_id' => $this->input->post('u_email'),
+			'user_password' => $this->input->post('u_pass')
+			);
+
+			// Show submitted data on view page again.
+			$this->load->view("event_form", $data);
+			}
+		}
     }
 ?>
