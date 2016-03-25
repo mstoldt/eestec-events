@@ -7,11 +7,11 @@
   <link rel="stylesheet" href="/resources/demos/style.css">
   <script>
   $(function() {
-    $( "#datepicker" ).datepicker();
-    $( "#datepicker2" ).datepicker();
-    $( "#datepicker3" ).datepicker();
-    $( "#datepicker4" ).datepicker();
-    $( "#datepicker5" ).datepicker();
+    $( "#datepicker" ).datepicker({ dateFormat: 'yy-mm-dd' });
+    $( "#datepicker2" ).datepicker({ dateFormat: 'yy-mm-dd' });
+    $( "#datepicker3" ).datepicker({ dateFormat: 'yy-mm-dd' });
+    $( "#datepicker4" ).datepicker({ dateFormat: 'yy-mm-dd' });
+    $( "#datepicker5" ).datepicker({ dateFormat: 'yy-mm-dd' });
   });
   </script>
 </head>
