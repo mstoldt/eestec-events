@@ -27,4 +27,8 @@
 
     }
  ?>
+ 
+ <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
+  <a class="btn-floating btn-large waves-effect waves-light red" href="lcs_form"><i class="material-icons">add</i></a>
+ </div>
 </table>
