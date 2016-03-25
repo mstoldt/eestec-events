@@ -151,6 +151,7 @@
       border-radius: .25rem;
       letter-spacing: .2em;
       transition: background .2s;
+      cursor: pointer;
     }
     .btn:focus {
       outline: 0;
@@ -173,21 +174,46 @@
     <div class="profile__form">
       <div class="profile__fields">
         <div class="field">
-          <input type="text" placeholder="E-Mail" id="fieldUser" class="input" required pattern=.*\S.* />
+        <?php
+            // Open form and set URL for submit form
+            echo form_open('data_submitted');
+
+            // Show Email Field in View Page
+            $data= array(
+                'type' => 'text',
+                'name' => 'u_email',
+                'placeholder' => 'E-Mail',
+                'class' => 'input'
+            );
+            echo form_input($data);
+        ?>
         </div>
         <div class="field">
-          <input type="password" id="fieldPassword" class="input" placeholder="Password" required pattern=.*\S.* />
+        <?php
+            // Show Name Field in View Page
+            $data= array(
+                'type' => 'password',
+                'name' => 'u_pass',
+                'placeholder' => 'Password',
+                'class' => 'input'
+            );
+            echo form_input($data);
+        ?>
         </div>
         <div class="profile__footer">
-          <input type="submit" class="btn" value="Submit" style="cursor: pointer">
+            <?php
+                $data = array(
+                    'type' => 'submit',
+                    'value'=> 'Login',
+                    'class'=> 'btn'
+                );
+                echo form_submit($data);
+                echo form_close();
+            ?>
         </div>
       </div>
      </div>
   </div>
 </div>
-
-
-
-
   </body>
 </html>
