@@ -1,51 +1,59 @@
 <input type="text" placeholder="Search..." id="search" style="width: 100%; height: 40px; border: 1px">
-<?php
-	$this->load->helper(array('form', 'url'));
-	// Open form and set URL for submit form
-	echo form_open('events/persons_data_submitted');
-     ?>
 <table border="1" class="striped">
     <thead>
         <tr>
-            <th>Edit</th>
             <th>Name</th>
             <th>EESTEC Link</th>
             <th>LC</th>
-            <th>Events attended since 01/02</th>
+            <th>Events attended (since 01/02 are red)</th>
+            <th>Edit</th>
         </tr>
     </thead>
     <tbody>
 <?php
 
-
-    $tmp = "";
     foreach ($list->result() as $row)
     {
+        $id = $row->id;
         $eestec_profile_link = $row->eestec_profile_link;
-        $p_name = $row->person_name;
-        $e_name = $row->event_name;
+        $name = $row->person_name;
+        $city = $row->city;
 
-        if($eestec_profile_link == $tmp)
+        echo "<tr class='searchme'>";
+
+        echo "<td class='searchname'>".$name."</td>";
+
+        echo "<td class='searchlink'><a href='".$eestec_profile_link."' target='_blank'>".$eestec_profile_link."</a></td>";
+
+        echo "<td>".$city."</td>";
+
+        // Events
+        echo "<td>";
+
+        $id = intval($id);
+        $date = date("Y")."-02-01";
+
+        $query = $this->db->query('SELECT e.name AS event_name, e.start_date FROM event_participants ep INNER JOIN events e ON ep.event_id = e.id WHERE ep.person_id = '.$id.' ORDER BY start_date DESC');
+
+        foreach ($query->result() as $event)
         {
-            echo ", ".$e_name;
+            if($event->start_date > $date)
+            {
+                echo "<span class='red'>";
+            }
+
+            echo $event->event_name.", ";
+
+            if($event->start_date > $date)
+            {
+                echo "</span>";
+            }
         }
-        else
-        {
+        echo "</td>";
 
+        echo "<td><a href='persons_form?id=".$row->id."'><i class='material-icons'>mode edit</i></a></td>";
 
-            echo "</td></tr>";
-            echo "<tr class='searchme'><td>";
-			//echo form_checkbox('choice', 'accept', TRUE);
-			echo "<a href='persons_form?id=".$row->id."'>Edit</a>";
-            echo "</td><td class='searchname'>";
-
-            echo $p_name;
-            echo "</td><td class='searchlink'><a href='".$eestec_profile_link."' target='_blank'>".$eestec_profile_link."</a></td>";
-            echo "<td>".$row->city."</td>";
-            echo "<td>".$e_name;
-            $tmp = $eestec_profile_link;
-        }
-
+        echo "</tr>";
     }
  ?>
 
@@ -59,18 +67,6 @@
 </tbody>
 </table>
 
-<?php
-
-	$data = array(
-	'type' => 'submit',
-	'value'=> 'Submit',
-	'class'=> 'submit'
-	);
-	echo form_submit($data);
-	echo form_close();
-
-?>
-<pre><div id="output"></div></pre>
 
 <script>
     $("#search").on("keyup change", function(e) {
