@@ -1,8 +1,13 @@
 <input type="text" placeholder="Search..." id="search" style="width: 100%; height: 40px; border: 1px">
+<?php
+	$this->load->helper(array('form', 'url'));
+	// Open form and set URL for submit form
+	echo form_open('events/persons_data_submitted');
+     ?>
 <table border="1" class="striped">
     <thead>
         <tr>
-            <th>Choice</th>
+            <th>Edit</th>
             <th>Name</th>
             <th>EESTEC Link</th>
             <th>LC</th>
@@ -11,9 +16,6 @@
     </thead>
     <tbody>
 <?php
-	$this->load->helper(array('form', 'url'));
-	// Open form and set URL for submit form
-	echo form_open('events/persons_data_submitted');
 
 
     $tmp = "";
@@ -30,19 +32,17 @@
         else
         {
 
-			
-            echo "</td></tr><tr><td>";
-			
-			echo form_checkbox('choice', 'accept', TRUE);
-			
-            echo "</td><td>";
 
-            echo "</td></tr><tr class='searchme'><td class='searchname'>";
+            echo "</td></tr>";
+            echo "<tr class='searchme'><td>";
+			//echo form_checkbox('choice', 'accept', TRUE);
+			echo "Edit";
+            echo "</td><td class='searchname'>";
 
             echo $p_name;
-            echo "</td><td class='searchlink'><a href='".$eestec_profile_link."' target='_blank'>".$eestec_profile_link."</a>";
-            echo "</td><td>".$row->city;
-            echo "</td><td>".$e_name;
+            echo "</td><td class='searchlink'><a href='".$eestec_profile_link."' target='_blank'>".$eestec_profile_link."</a></td>";
+            echo "<td>".$row->city."</td>";
+            echo "<td>".$e_name;
             $tmp = $eestec_profile_link;
         }
 
@@ -58,19 +58,18 @@
 	</div>
 </tbody>
 </table>
-<<<<<<< HEAD
+
 <?php
-	
+
 	$data = array(
 	'type' => 'submit',
 	'value'=> 'Submit',
 	'class'=> 'submit'
 	);
-	echo form_submit($data); 
+	echo form_submit($data);
 	echo form_close();
 
 ?>
-=======
 <pre><div id="output"></div></pre>
 
 <script>
@@ -96,4 +95,3 @@
         }
     });
 </script>
->>>>>>> origin/master

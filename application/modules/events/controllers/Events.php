@@ -138,6 +138,7 @@
             $data['page_title'] = "LCs form";
 
             $this->load->view('header', $data);
+
 			$data = array(
 			'city' => $this->input->post('u_city')
 			);
