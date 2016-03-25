@@ -1,3 +1,4 @@
+<input type="text" placeholder="Search..." id="search" style="width: 100%; height: 40px; border: 1px">
 <table border="1" class="striped">
     <thead>
         <tr>
@@ -22,9 +23,9 @@
         }
         else
         {
-            echo "</td></tr><tr><td>";
+            echo "</td></tr><tr class='searchme'><td class='searchname'>";
             echo $p_name;
-            echo "</td><td><a href='".$eestec_profile_link."' target='_blank'>".$eestec_profile_link."</a>";
+            echo "</td><td class='searchlink'><a href='".$eestec_profile_link."' target='_blank'>".$eestec_profile_link."</a>";
             echo "</td><td>".$row->city;
             echo "</td><td>".$e_name;
             $tmp = $eestec_profile_link;
@@ -42,3 +43,29 @@
 	</div>
 </tbody>
 </table>
+<pre><div id="output"></div></pre>
+
+<script>
+    $("#search").on("keyup change", function(e) {
+        // Set Search String
+        var search_string = $(this).val().toLowerCase();
+
+        // Do Search
+        if(search_string !== '')
+        {
+            $('tr.searchme').each(function() {
+                var name = $(this).children('.searchname').html().toLowerCase();
+                var link = $(this).children('.searchlink').html().toLowerCase();
+                console.log($(this));
+                if(name.indexOf(search_string) == -1 && link.indexOf(search_string) == -1)
+                {
+                    $(this).hide();
+                }
+            });
+        }
+        else
+        {
+            $('tr.searchme').show();
+        }
+    });
+</script>

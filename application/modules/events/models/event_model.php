@@ -22,5 +22,10 @@
             return $query; //return the data
         }
 
+        public function all_person_events_attended_like($query)
+        {
+            $query = $this->db->query("SELECT p.name AS person_name, e.name AS event_name, p.eestec_profile_link, lcs.city FROM persons p LEFT OUTER JOIN lcs ON lcs.id = p.lc LEFT OUTER JOIN event_participants ep ON p.id = ep.person_id LEFT OUTER JOIN Events e ON e.id = ep.event_id WHERE p.name LIKE '%".$query."%' OR p.eestec_profile_link LIKE '%".$query."%' ORDER BY p.eestec_profile_link ASC");
+            return $query; //return the data
+        }
     }
 ?>
