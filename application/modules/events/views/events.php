@@ -1,9 +1,4 @@
-<?php
-  if(!$_SESSION['role'] == 'admin')
-  {
-      redirect('events');
-  }
-?>
+
 <table border="1">
 <?php
     $tmp = "";
@@ -27,14 +22,14 @@
 
     }
  ?>
-	  
+
 	<div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
-		
+
 		<a class="btn-floating btn-large red" href="event_form">
 		  <i class="large material-icons">add</i>
 		</a>
-	
+
 	</div>
-	
-        
+
+
 </table>
