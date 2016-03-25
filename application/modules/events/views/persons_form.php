@@ -1,5 +1,8 @@
 <?php
-
+if(isset($_GET['id']))
+{
+	// Give me all the data at the moment and put it in the form
+}
 $this->load->helper(array('form', 'url'));
 // Open form and set URL for submit form
 echo form_open('events/persons_data_submitted');
@@ -55,6 +58,5 @@ echo form_submit($data); ?>
 	'eestec_profile_link' => $profile_link_id,
 	'lc' => $lc_id
 	);
-	$this->db->insert('persons', $data); 
+	$this->db->insert('persons', $data);
 } ?>
-

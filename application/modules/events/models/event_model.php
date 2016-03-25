@@ -3,7 +3,7 @@
     {
         public function all_person_events_attended()
         {
-            $query = $this->db->query("SELECT p.name AS person_name, e.name AS event_name, p.eestec_profile_link, lcs.city FROM persons p LEFT OUTER JOIN lcs ON lcs.id = p.lc LEFT OUTER JOIN event_participants ep ON p.id = ep.person_id LEFT OUTER JOIN Events e ON e.id = ep.event_id ORDER BY p.eestec_profile_link ASC");
+            $query = $this->db->query("SELECT p.id, p.name AS person_name, e.name AS event_name, p.eestec_profile_link, lcs.city FROM persons p LEFT OUTER JOIN lcs ON lcs.id = p.lc LEFT OUTER JOIN event_participants ep ON p.id = ep.person_id LEFT OUTER JOIN Events e ON e.id = ep.event_id ORDER BY p.eestec_profile_link ASC");
 
             return $query; //return the data
         }

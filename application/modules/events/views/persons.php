@@ -36,7 +36,7 @@
             echo "</td></tr>";
             echo "<tr class='searchme'><td>";
 			//echo form_checkbox('choice', 'accept', TRUE);
-			echo "Edit";
+			echo "<a href='persons_form?id=".$row->id."'>Edit</a>";
             echo "</td><td class='searchname'>";
 
             echo $p_name;
