@@ -1,10 +1,17 @@
-<?php 
+<?php
     if($_SESSION['role'] != 'admin')
     {
         redirect('events');
     }
 ?>
-<table border="1">
+<table border="1" class="striped">
+    <thead>
+        <tr>
+            <th>Event</th>
+            <th>Attending people</th>
+        </tr>
+    </thead>
+    <tbody>
 <?php
     $tmp = "";
     foreach ($list->result() as $row)
