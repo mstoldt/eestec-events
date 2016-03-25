@@ -3,12 +3,6 @@ $this->load->helper(array('form', 'url'));
 // Open form and set URL for submit form
 echo form_open('events/persons_data_submitted');
 
-$query = $this->db->query("SELECT city, id FROM lcs");
-foreach($query->result() as $row)
-{
-	echo "<option value='".$row->id."'>".$row->name."</option>";
-}
-
 // Show name Field in View Page
 echo form_label('Name:', 'per_name');
 $data= array(
@@ -30,14 +24,17 @@ $data= array(
 echo form_input($data);
 
 // Show lc Field in View Page
+$query = $this->db->query("SELECT city, id FROM lcs");
+
 echo form_label('LC:', 'per_lc');
-$data= array(
-'type' => 'text',
-'name' => 'per_lc',
-'placeholder' => 'Please Enter the LC',
-'class' => 'datepicker'
-);
-echo form_input($data);
+echo "<select class='browser-default' name='per_lc'>";
+echo "<option disabled selected>Choose your option</option>";
+    
+foreach($query->result() as $row)
+{
+	echo "<option value='".$row->id."'>".$row->city."</option>";
+}
+echo "</select>";
 
 ?>
 
