@@ -1,8 +1,24 @@
 <?php
-
+if(isset($_GET['id']))
+{
+	// Give me all the data at the moment and put it in the form
+	$id = $_GET['id'];
+	$this->db->where('id', $id); 
+	$query = $this->db->get('persons');
+	$row = $query->row();
+    
+	$p_name = $row->name;
+	$prof_link = $row->eestec_profile_link;
+	$p_lc = $row->lc;
+	
+}else{
+	$p_name = "";
+	$prof_link = "";
+	$p_lc = "";
+}
 $this->load->helper(array('form', 'url'));
 // Open form and set URL for submit form
-echo form_open('events/persons_data_submitted');
+echo form_open('events/persons_data_edited');
 
 // Show name Field in View Page
 echo form_label('Name:', 'per_name');
@@ -10,7 +26,8 @@ $data= array(
 'type' => 'text',
 'name' => 'per_name',
 'placeholder' => 'Please Enter the participant name',
-'class' => 'input'
+'class' => 'input',
+'value' => $p_name
 );
 echo form_input($data);
 
@@ -20,7 +37,8 @@ $data= array(
 'type' => 'text',
 'name' => 'prof_link',
 'placeholder' => 'Please Enter EESTEC profile link',
-'class' => 'input_box'
+'class' => 'input_box',
+'value' => $prof_link
 );
 echo form_input($data);
 
@@ -30,7 +48,8 @@ $data= array(
 'type' => 'text',
 'name' => 'per_lc',
 'placeholder' => 'Please Enter the LC',
-'class' => 'datepicker'
+'class' => 'datepicker',
+'value' => $p_lc
 );
 echo form_input($data);
 
@@ -55,6 +74,7 @@ echo form_submit($data); ?>
 	'eestec_profile_link' => $profile_link_id,
 	'lc' => $lc_id
 	);
-	$this->db->insert('persons', $data); 
+	$this->db->where('eestec_profile_link', $profile_link_id);
+	$this->db->update('persons', $data);
 } ?>
 

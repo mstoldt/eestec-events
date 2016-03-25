@@ -27,7 +27,6 @@
 
         echo "<td>".$city."</td>";
 
-        // Events
         echo "<td>";
 
         $id = intval($id);
