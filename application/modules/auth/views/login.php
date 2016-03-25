@@ -2,7 +2,7 @@
 <html >
   <head>
     <meta charset="UTF-8">
-    <title>EESTEC George Login</title>
+    <title>EESTEC Events Login</title>
     <style>
     /* Base styles */
     *, *:after, *:before {

@@ -6,11 +6,16 @@
 		    parent::__construct();
     		$this->load->model('Event_model'); //load the model
 
-            if (!$this->ion_auth->logged_in())
+            /*if (!$this->ion_auth->logged_in())
     		{
     			redirect('auth/login');
-    		}
+    		}*/
     	}
+
+        public function index()
+        {
+            redirect('events/event');
+        }
 
         public function persons($page = 'persons')
         {
