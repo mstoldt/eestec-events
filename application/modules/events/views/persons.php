@@ -50,7 +50,7 @@
         }
         echo "</td>";
 
-        echo "<td><a href='persons_form?id=".$row->id."'><i class='material-icons'>mode edit</i></a></td>";
+        echo "<td><a href='persons_edit?id=".$row->id."'><i class='material-icons'>mode edit</i></a></td>";
 
         echo "</tr>";
     }
