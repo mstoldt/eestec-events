@@ -7,11 +7,11 @@
   <link rel="stylesheet" href="/resources/demos/style.css">
   <script>
   $(function() {
-    $( "#datepicker" ).datepicker();
-    $( "#datepicker2" ).datepicker();
-    $( "#datepicker3" ).datepicker();
-    $( "#datepicker4" ).datepicker();
-    $( "#datepicker5" ).datepicker();
+    $( "#datepicker" ).datepicker({ dateFormat: 'yy-mm-dd' });
+    $( "#datepicker2" ).datepicker({ dateFormat: 'yy-mm-dd' });
+    $( "#datepicker3" ).datepicker({ dateFormat: 'yy-mm-dd' });
+    $( "#datepicker4" ).datepicker({ dateFormat: 'yy-mm-dd' });
+    $( "#datepicker5" ).datepicker({ dateFormat: 'yy-mm-dd' });
   });
   </script>
 </head>
@@ -33,14 +33,16 @@ $data= array(
 echo form_input($data);
 
 // Show lc Field in View Page
-echo form_label('Event lc:', 'ev_lc');
-$data= array(
-'type' => 'text',
-'name' => 'ev_lc',
-'placeholder' => 'Please Enter lc name',
-'class' => 'input_box'
-);
-echo form_input($data);
+$query = $this->db->query("SELECT city, id FROM lcs");
+echo form_label('Event LC:', 'ev_lc');
+echo "<select class='browser-default' name='ev_lc'>";
+echo "<option disabled selected>Choose your option</option>";
+    
+foreach($query->result() as $row)
+{
+	echo "<option value='".$row->id."'>".$row->city."</option>";
+}
+echo "</select>";
 
 // Show start date Field in View Page
 echo form_label('Event start date:', 'ev_start_date');
