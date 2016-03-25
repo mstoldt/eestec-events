@@ -25,13 +25,13 @@
         $announce_date = $row->announce_date;
         $participants_announce_date = $row->participants_announce_date;
 
-        $datediff1 = $end_date - $start_date;
+        $datediff1 = strtotime($end_date) - strtotime($start_date);
         $more_or_equal_seven = floor($datediff1/(60*60*24));
 
-        $datediff2 = $start_date - $participants_announce_date;
+        $datediff2 = strtotime($start_date) - strtotime($participants_announce_date);
         $more_or_equal_twentyeight = floor($datediff2/(60*60*24));
 
-        $datediff3 = $start_date - $announce_date;
+        $datediff3 = strtotime($start_date) - strtotime($announce_date);
         $more_or_equal_fiftysix = floor($datediff3/(60*60*24));
 
         $red = "";

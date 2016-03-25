@@ -63,6 +63,7 @@ if(isset($_GET['id']))
 </script>
 
 <?php
+echo $datediff1;
 $this->load->helper(array('form', 'url'));
 // Open form and set URL for submit form
 echo form_open('events/data_edited');
@@ -262,4 +263,3 @@ if(isset($_GET['id'])){
         });
     });
 </script>
-
