@@ -45,7 +45,47 @@ if(isset($_GET['id']))
 	$ev_deadline_date_id= "";
 	$ev_participants_announce_date_id= "";
 }
+?>
 
+
+<script>
+    $('.chip i').on('click', function(e) {
+        var p_id = $(this).parents('div.chip').attr('data-person-id');
+        var e_id = $(this).parents('div.chip').attr('data-event-id');
+
+        $.post("events/delete_person_from_event", {p_id: p_id, e_id: e_id}, function(data)
+        {
+
+        });
+    });
+
+    $('#add-person-to-event').on('click', function(e) {
+        var p_id = $('select#person-list').find(":selected").val();
+        var p_name = $('select#person-list').find(":selected").text();
+        var e_id = $('select#person-list').attr('data-event-id');
+
+        $.post("events/add_person_to_event", {p_id: p_id, e_id: e_id}, function(data)
+        {
+            if(data)
+            {
+                $('.all-the-attending-persons').append('<div class="chip" data-person-id="'+p_id+'" data-event-id="'+e_id+'">'+p_name+'<i class="material-icons">close</i></div>');
+            }
+        });
+    });
+    <?php
+
+    $datediff1 = $ev_end_date - $ev_start_date;
+    $more_or_equal_seven = floor($datediff1/(60*60*24));
+
+    $datediff2 = $ev_start_date - $ev_participants_announce_date;
+    $more_or_equal_twentyeight = floor($datediff2/(60*60*24));
+
+    $datediff3 = $ev_start_date - $ev_announce_date;
+    $more_or_equal_fiftysix = floor($datediff3/(60*60*24));
+    ?>
+</script>
+
+<?php
 $this->load->helper(array('form', 'url'));
 // Open form and set URL for submit form
 echo form_open('events/data_edited');
@@ -73,24 +113,34 @@ $data= array(
 echo form_input($data);
 
 // Show start date Field in View Page
+	if($more_or_equal_seven < 7 || $more_or_equal_twentyeight < 28 || $more_or_equal_fiftysix < 56){
+		$classname = 'red input';
+	}else{
+		$classname = 'input';
+	}
 echo form_label('Event start date:', 'ev_start_date');
 $data= array(
 'type' => 'text',
 'name' => 'ev_start_date',
 'placeholder' => 'Please Enter the start date of the event',
-'class' => 'input',
+'class' => $classname,
 'id' => 'datepicker',
 'value' => $ev_start_date_id
 );
 echo form_input($data);
 
 // Show end date Field in View Page
+if($more_or_equal_seven < 7){
+		$classname = 'red input';
+	}else{
+		$classname = 'input';
+	}
 echo form_label('Event end date:', 'ev_end_date');
 $data= array(
 'type' => 'text',
 'name' => 'ev_end_date',
 'placeholder' => 'Please Enter the end date of the event',
-'class' => 'input',
+'class' => $classname,
 'id' => 'datepicker2',
 'value' => $ev_end_date_id
 );
@@ -108,12 +158,17 @@ $data= array(
 echo form_input($data);
 
 // Show announce date Field in View Page
+	if($more_or_equal_fiftysix < 56){
+		$classname = 'red input';
+	}else{
+		$classname = 'input';
+	}
 echo form_label('Event announce date:', 'ev_announce_date');
 $data= array(
 'type' => 'text',
 'name' => 'ev_announce_date',
 'placeholder' => 'Please Enter the announce date of the event',
-'class' => 'input',
+'class' => $classname,
 'id' => 'datepicker3',
 'value' => $ev_announce_date_id
 );
@@ -132,12 +187,17 @@ $data= array(
 echo form_input($data);
 
 // Show participants announce date Field in View Page
+if($more_or_equal_twentyeight < 28){
+		$classname = 'red input';
+	}else{
+		$classname = 'input';
+	}
 echo form_label('Event participants announce date:', 'ev_participants_announce_date');
 $data= array(
 'type' => 'text',
 'name' => 'ev_participants_announce_date',
 'placeholder' => 'Please Enter the participants announce date for the event',
-'class' => 'input',
+'class' => $classname,
 'id' => 'datepicker5',
 'value' => $ev_participants_announce_date_id
 );
@@ -196,44 +256,3 @@ echo form_submit($data); ?>
     }
 ?>
 </div>
-
-<script>
-    $('.chip i').on('click', function(e) {
-        var p_id = $(this).parents('div.chip').attr('data-person-id');
-        var e_id = $(this).parents('div.chip').attr('data-event-id');
-
-        $.post("events/delete_person_from_event", {p_id: p_id, e_id: e_id}, function(data)
-        {
-
-        });
-    });
-
-    $('#add-person-to-event').on('click', function(e) {
-        var p_id = $('select#person-list').find(":selected").val();
-        var p_name = $('select#person-list').find(":selected").text();
-        var e_id = $('select#person-list').attr('data-event-id');
-
-        $.post("events/add_person_to_event", {p_id: p_id, e_id: e_id}, function(data)
-        {
-            if(data)
-            {
-                $('.all-the-attending-persons').append('<div class="chip" data-person-id="'+p_id+'" data-event-id="'+e_id+'">'+p_name+'<i class="material-icons">close</i></div>');
-            }
-        });
-    });
-    <?php
-    $start_date = $row->start_date;
-    $end_date = $row->end_date;
-    $announce_date = $row->announce_date;
-    $participants_announce_date = $row->participants_announce_date;
-
-    $datediff1 = $end_date - $start_date;
-    $more_or_equal_seven = floor($datediff1/(60*60*24));
-
-    $datediff2 = $start_date - $participants_announce_date;
-    $more_or_equal_twentyeight = floor($datediff2/(60*60*24));
-
-    $datediff3 = $start_date - $announce_date;
-    $more_or_equal_fiftysix = floor($datediff3/(60*60*24));
-    ?>
-</script>
