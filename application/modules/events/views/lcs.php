@@ -15,6 +15,7 @@
         {
             echo "</td></tr><tr><td>";
             echo $city;
+            echo "Changes made";
             echo "</td><td>".$e_name;
             $tmp = $row->id;
         }
