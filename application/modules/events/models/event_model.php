@@ -10,7 +10,7 @@
 
         public function all_events_participants()
         {
-            $query = $this->db->query("SELECT e.id, e.name AS event_name, lcs.city AS lc_city FROM events e INNER JOIN lcs ON e.lc = lcs.id");
+            $query = $this->db->query("SELECT e.id, e.name AS event_name, lcs.city AS lc_city, e.start_date, e.end_date, e.announce_date, e.participants_announce_date FROM events e INNER JOIN lcs ON e.lc = lcs.id");
 
             return $query; //return the data
         }

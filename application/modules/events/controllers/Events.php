@@ -72,7 +72,7 @@
 			$this->load->view("event_form");
             $this->load->view('footer');
 		}
-		
+
 		// Show form in view page i.e view_page.php
 		public function event_edit($page = 'event_edit') {
 			$data['page_title'] = "event edit";
@@ -104,7 +104,7 @@
 
             $this->load->view('footer');
 		}
-		
+
 		// When user submit data on view page, Then this function store data in array.
 		public function data_edited($page = 'data_edited') {
 			$data['page_title'] = "event edited";
@@ -137,7 +137,7 @@
 			$this->load->view("persons_form");
             $this->load->view('footer');
 		}
-		
+
 		// Show form in view page i.e view_page.php
 		public function persons_edit($page = 'persons_edit') {
 			$data['page_title'] = "persons form";
@@ -164,7 +164,7 @@
 
             $this->load->view('footer');
 		}
-		
+
 		// When user submit data on view page, Then this function store data in array.
 		public function persons_data_edited($page = 'data_edited') {
 			$data['page_title'] = "persons form";
@@ -208,8 +208,8 @@
 
             $this->load->view('footer');
 		}
-		
-		
+
+
 		// Show form in view page i.e view_page.php
 		public function lcs_edit() {
             $data['page_title'] = "LCs edit";
@@ -243,11 +243,23 @@
             redirect('login');
         }
 
-        public function search()
+        public function delete_person_from_event()
         {
-            $query = $_POST['query'];
-            $data['list'] = $this->Event_model->all_person_events_attended_like($query);
-            echo json_encode($data['list']->result());
+            $p_id = $_POST['p_id'];
+            $e_id = $_POST['e_id'];
+            $this->db->query("DELETE FROM event_participants WHERE person_id = ".$p_id." AND event_id = ".$e_id);
+        }
+
+        public function add_person_to_event()
+        {
+            $p_id = $_POST['p_id'];
+            $e_id = $_POST['e_id'];
+            $query = $this->db->query("SELECT * FROM event_participants WHERE event_id = ".$e_id." AND person_id = ".$p_id);
+            if($query->num_rows() == 0)
+            {
+                $this->db->query("INSERT INTO event_participants (person_id, event_id) VALUES (".$p_id.", ".$e_id.")");
+                echo 1;
+            }
         }
     }
 ?>

@@ -21,28 +21,28 @@ if(isset($_GET['id']))
 {
 	// Give me all the data at the moment and put it in the form
 	$id = $_GET['id'];
-	$this->db->where('id', $id); 
+	$this->db->where('id', $id);
 	$query = $this->db->get('events');
 	$row = $query->row();
-    
-	$ev_name_id = $row->name;						
-	$ev_lc_id = $row->lc;			
-	$ev_start_date_id = $row->start_date;				
-	$ev_end_date_id = $row->end_date;				
-	$ev_description_id = $row->description; 				
-	$ev_announce_date_id = $row->announce_date;				
-	$ev_deadline_date_id = $row->deadline_date;				
+
+	$ev_name_id = $row->name;
+	$ev_lc_id = $row->lc;
+	$ev_start_date_id = $row->start_date;
+	$ev_end_date_id = $row->end_date;
+	$ev_description_id = $row->description;
+	$ev_announce_date_id = $row->announce_date;
+	$ev_deadline_date_id = $row->deadline_date;
 	$ev_participants_announce_date_id = $row->participants_announce_date;
-	
+
 }else{
-	
-	$ev_name_id= "";						
-	$ev_lc_id= "";			
-	$ev_start_date_id= "";				
-	$ev_end_date_id= "";				
-	$ev_description_id= ""; 				
-	$ev_announce_date_id= "";				
-	$ev_deadline_date_id= "";				
+
+	$ev_name_id= "";
+	$ev_lc_id= "";
+	$ev_start_date_id= "";
+	$ev_end_date_id= "";
+	$ev_description_id= "";
+	$ev_announce_date_id= "";
+	$ev_deadline_date_id= "";
 	$ev_participants_announce_date_id= "";
 }
 
@@ -175,3 +175,50 @@ echo form_submit($data); ?>
 	$this->db->update('events', $data);
 } ?>
 
+<select class="browser-default" id="person-list" data-event-id="<?php echo $id; ?>">
+    <?php
+        $query = $this->db->query("SELECT name, id FROM persons ORDER BY name ASC");
+        foreach($query->result() as $row)
+        {
+            echo '<option value="'.$row->id.'">'.$row->name.'</option>';
+        }
+    ?>
+</select>
+<input type="button" value="Add to event" id="add-person-to-event">
+
+<div class="all-the-attending-persons">
+<?php
+    // Persons attending to this event
+    $query = $this->db->query("SELECT p.name AS name, p.id AS id FROM event_participants ep INNER JOIN persons p ON ep.person_id = p.id WHERE event_id = ".$id);
+    foreach($query->result() as $row)
+    {
+        echo '<div class="chip" data-person-id="'.$row->id.'" data-event-id="'.$id.'">'.$row->name.'<i class="material-icons">close</i></div>';
+    }
+?>
+</div>
+
+<script>
+    $('.chip i').on('click', function(e) {
+        var p_id = $(this).parents('div.chip').attr('data-person-id');
+        var e_id = $(this).parents('div.chip').attr('data-event-id');
+
+        $.post("events/delete_person_from_event", {p_id: p_id, e_id: e_id}, function(data)
+        {
+
+        });
+    });
+
+    $('#add-person-to-event').on('click', function(e) {
+        var p_id = $('select#person-list').find(":selected").val();
+        var p_name = $('select#person-list').find(":selected").text();
+        var e_id = $('select#person-list').attr('data-event-id');
+
+        $.post("events/add_person_to_event", {p_id: p_id, e_id: e_id}, function(data)
+        {
+            if(data)
+            {
+                $('.all-the-attending-persons').append('<div class="chip" data-person-id="'+p_id+'" data-event-id="'+e_id+'">'+p_name+'<i class="material-icons">close</i></div>');
+            }
+        });
+    });
+</script>
