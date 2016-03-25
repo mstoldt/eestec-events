@@ -122,6 +122,33 @@
 
             $this->load->view('footer');
 		}
+		
+		
+		// Show form in view page i.e view_page.php
+		public function lcs_form() {
+            $data['page_title'] = "LCs form";
+
+            $this->load->view('header', $data);
+            $this->load->view('lcs_form');
+            $this->load->view('footer');
+		}
+
+		// When user submit data on view page, Then this function store data in array.
+		public function lc_data_submitted() {
+			
+            $data['page_title'] = "LCs form";
+
+            $this->load->view('header', $data);
+			
+			$data = array(
+			'lc_name' => $this->input->post('u_lc'),
+			'city' => $this->input->post('u_city')
+			);
+			// Show submitted data on view page again.
+			$this->load->view("lcs_form", $data);
+			
+            $this->load->view('footer');
+		}
 
         public function logout($page = 'logout')
         {

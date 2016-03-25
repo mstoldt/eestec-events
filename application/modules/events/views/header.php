@@ -15,9 +15,9 @@
     <body>
       <!--Import jQuery before materialize.js-->
       <script type="text/javascript" src="<?php echo base_url("assets/js/jquery.js"); ?>"></script>
-      <script type="text/javascript" src="<?php echo base_url("assets/js/materialize.min.js"); ?>"></script>
-
-      <nav>
+	  <script type="text/javascript" src="<?php echo base_url("assets/js/materialize.min.js"); ?>"></script>
+		
+	<nav>
     <div class="nav-wrapper">
       <a href="#" class="brand-logo"><?php echo $page_title; ?></a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
