@@ -22,4 +22,12 @@
 
     }
  ?>
+ 
+	<div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
+		
+		<a class="btn-floating btn-large red" href="persons_form">
+		  <i class="large material-icons">add</i>
+		</a>
+	
+	</div>
 </table>

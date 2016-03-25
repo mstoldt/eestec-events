@@ -55,19 +55,62 @@
         }
 
 		// Show form in view page i.e view_page.php
-		public function event_form() {
+		public function event_form($page = 'event_form') {
+			$data['page_title'] = "event form";
+
+            $this->load->view('header', $data);
 			$this->load->view("event_form");
+            $this->load->view('footer');
 		}
 
 		// When user submit data on view page, Then this function store data in array.
-		public function data_submitted() {
+		public function data_submitted($page = 'data_submitted') {
+			$data['page_title'] = "event form";
+
+            $this->load->view('header', $data);
+			
 			$data = array(
-			'user_email_id' => $this->input->post('u_email'),
-			'user_password' => $this->input->post('u_pass')
+			'event_name_id' => $this->input->post('ev_name'),
+			'event_lc_id' => $this->input->post('ev_lc'),
+			'event_start_date_id' => $this->input->post('ev_start_date'),
+			'event_end_date_id' => $this->input->post('ev_end_date'),
+			'event_description_id' => $this->input->post('ev_description'),
+			'event_announce_date_id' => $this->input->post('ev_announce_date'),
+			'event_deadline_date_id' => $this->input->post('ev_deadline_date'),
+			'event_participants_announce_date_id' => $this->input->post('ev_participants_announce_date')
 			);
 
 			// Show submitted data on view page again.
 			$this->load->view("event_form", $data);
+			
+            $this->load->view('footer');
+		}
+		
+		// Show form in view page i.e view_page.php
+		public function persons_form($page = 'persons_form') {
+			$data['page_title'] = "persons form";
+
+            $this->load->view('header', $data);
+			$this->load->view("persons_form");
+            $this->load->view('footer');
+		}
+
+		// When user submit data on view page, Then this function store data in array.
+		public function persons_data_submitted($page = 'data_submitted') {
+			$data['page_title'] = "persons form";
+
+            $this->load->view('header', $data);
+			
+			$data = array(
+			'person_name_id' => $this->input->post('per_name'),
+			'profile_link_id' => $this->input->post('prof_link'),
+			'lc_id' => $this->input->post('per_lc')
+			);
+
+			// Show submitted data on view page again.
+			$this->load->view("persons_form", $data);
+			
+            $this->load->view('footer');
 		}
 
         public function logout($page = 'logout')
