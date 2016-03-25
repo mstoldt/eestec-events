@@ -22,7 +22,7 @@ if(isset($_GET['id']))
 	// Give me all the data at the moment and put it in the form
 	$id = $_GET['id'];
 	$this->db->where('id', $id); 
-	$query = $this->db->get('persons');
+	$query = $this->db->get('events');
 	$row = $query->row();
     
 	$event_name_id = $row->name;						

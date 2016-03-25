@@ -107,7 +107,7 @@
 		
 		// When user submit data on view page, Then this function store data in array.
 		public function data_edited($page = 'data_edited') {
-			$data['page_title'] = "event form";
+			$data['page_title'] = "event edited";
 
             $this->load->view('header', $data);
 
