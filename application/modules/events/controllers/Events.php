@@ -72,6 +72,15 @@
 			$this->load->view("event_form");
             $this->load->view('footer');
 		}
+		
+		// Show form in view page i.e view_page.php
+		public function event_edit($page = 'event_edit') {
+			$data['page_title'] = "event edit";
+
+            $this->load->view('header', $data);
+			$this->load->view("event_edit");
+            $this->load->view('footer');
+		}
 
 		// When user submit data on view page, Then this function store data in array.
 		public function data_submitted($page = 'data_submitted') {
@@ -92,6 +101,29 @@
 
 			// Show submitted data on view page again.
 			$this->load->view("event_form", $data);
+
+            $this->load->view('footer');
+		}
+		
+		// When user submit data on view page, Then this function store data in array.
+		public function data_edited($page = 'data_edited') {
+			$data['page_title'] = "event form";
+
+            $this->load->view('header', $data);
+
+			$data = array(
+			'event_name_id' => $this->input->post('ev_name'),
+			'event_lc_id' => $this->input->post('ev_lc'),
+			'event_start_date_id' => $this->input->post('ev_start_date'),
+			'event_end_date_id' => $this->input->post('ev_end_date'),
+			'event_description_id' => $this->input->post('ev_description'),
+			'event_announce_date_id' => $this->input->post('ev_announce_date'),
+			'event_deadline_date_id' => $this->input->post('ev_deadline_date'),
+			'event_participants_announce_date_id' => $this->input->post('ev_participants_announce_date')
+			);
+
+			// Show submitted data on view page again.
+			$this->load->view("event_edit", $data);
 
             $this->load->view('footer');
 		}
